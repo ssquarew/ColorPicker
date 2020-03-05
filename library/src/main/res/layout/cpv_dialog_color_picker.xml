@@ -79,7 +79,7 @@
             />
 
         <EditText
-            android:id="@+id/cpv_hex"
+            android:id="@+id/cpv_hex" android:visibility="gone"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:digits="0123456789ABCDEFabcdef"
