@@ -260,7 +260,7 @@ public class ColorPickerView extends View {
     hueAlphaTrackerPaint.setStrokeWidth(DrawingUtils.dpToPx(getContext(), 2));
     hueAlphaTrackerPaint.setAntiAlias(true);
 
-    alphaTextPaint.setColor(0xff1c1c1c);
+    alphaTextPaint.setColor(borderColor);
     alphaTextPaint.setTextSize(DrawingUtils.dpToPx(getContext(), 14));
     alphaTextPaint.setAntiAlias(true);
     alphaTextPaint.setTextAlign(Align.LEFT);
