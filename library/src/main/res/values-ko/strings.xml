@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Default title for color picker dialog [CHAR LIMIT=30] -->
+  <string name="cpv_default_title">색상 선택</string>
+  <string name="cpv_presets">Preset</string>
+  <string name="cpv_custom">Custom</string>
+  <string name="cpv_select">적용</string>
+  <string name="cpv_transparency">투명도 조절</string>
+</resources>

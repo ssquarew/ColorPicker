@@ -53,6 +53,7 @@ public class ColorPickerView extends View {
   private final static int HUE_PANEL_WDITH_DP = 30;
   private final static int ALPHA_PANEL_HEIGH_DP = 20;
   private final static int PANEL_SPACING_DP = 10;
+  private final static int ALPHA_PANEL_SPACING_DP = 40;
   private final static int CIRCLE_TRACKER_RADIUS_DP = 5;
   private final static int SLIDER_TRACKER_SIZE_DP = 4;
   private final static int SLIDER_TRACKER_OFFSET_DP = 2;
@@ -76,6 +77,10 @@ public class ColorPickerView extends View {
    * color panels.
    */
   private int panelSpacingPx;
+  /**
+   * The radius in px of the color palette tracker circle.
+   */
+  private int alphaPanelSpacingPx;
   /**
    * The radius in px of the color palette tracker circle.
    */
@@ -203,6 +208,7 @@ public class ColorPickerView extends View {
     huePanelWidthPx = DrawingUtils.dpToPx(getContext(), HUE_PANEL_WDITH_DP);
     alphaPanelHeightPx = DrawingUtils.dpToPx(getContext(), ALPHA_PANEL_HEIGH_DP);
     panelSpacingPx = DrawingUtils.dpToPx(getContext(), PANEL_SPACING_DP);
+    alphaPanelSpacingPx = DrawingUtils.dpToPx(getContext(), ALPHA_PANEL_SPACING_DP);
     circleTrackerRadiusPx = DrawingUtils.dpToPx(getContext(), CIRCLE_TRACKER_RADIUS_DP);
     sliderTrackerSizePx = DrawingUtils.dpToPx(getContext(), SLIDER_TRACKER_SIZE_DP);
     sliderTrackerOffsetPx = DrawingUtils.dpToPx(getContext(), SLIDER_TRACKER_OFFSET_DP);
@@ -257,7 +263,7 @@ public class ColorPickerView extends View {
     alphaTextPaint.setColor(0xff1c1c1c);
     alphaTextPaint.setTextSize(DrawingUtils.dpToPx(getContext(), 14));
     alphaTextPaint.setAntiAlias(true);
-    alphaTextPaint.setTextAlign(Align.CENTER);
+    alphaTextPaint.setTextAlign(Align.LEFT);
     alphaTextPaint.setFakeBoldText(true);
   }
 
@@ -418,7 +424,8 @@ public class ColorPickerView extends View {
     canvas.drawRect(rect, alphaPaint);
 
     if (alphaSliderText != null && !alphaSliderText.equals("")) {
-      canvas.drawText(alphaSliderText, rect.centerX(), rect.centerY() + DrawingUtils.dpToPx(getContext(), 4),
+
+      canvas.drawText(alphaSliderText, rect.left , rect.top - (alphaPanelSpacingPx / 3.0f),
           alphaTextPaint);
     }
 
@@ -615,7 +622,7 @@ public class ColorPickerView extends View {
         int h = (widthAllowed - panelSpacingPx - huePanelWidthPx);
 
         if (showAlphaPanel) {
-          h += panelSpacingPx + alphaPanelHeightPx;
+          h += alphaPanelSpacingPx + alphaPanelHeightPx;
         }
 
         if (h > heightAllowed) {
@@ -632,7 +639,7 @@ public class ColorPickerView extends View {
         int w = (heightAllowed + panelSpacingPx + huePanelWidthPx);
 
         if (showAlphaPanel) {
-          w -= (panelSpacingPx + alphaPanelHeightPx);
+          w -= (alphaPanelSpacingPx + alphaPanelHeightPx);
         }
 
         if (w > widthAllowed) {
@@ -663,8 +670,8 @@ public class ColorPickerView extends View {
       int heightNeeded = (widthAllowed - panelSpacingPx - huePanelWidthPx);
 
       if (showAlphaPanel) {
-        widthNeeded -= (panelSpacingPx + alphaPanelHeightPx);
-        heightNeeded += panelSpacingPx + alphaPanelHeightPx;
+        widthNeeded -= (alphaPanelSpacingPx + alphaPanelHeightPx);
+        heightNeeded += alphaPanelSpacingPx + alphaPanelHeightPx;
       }
 
       boolean widthOk = false;
@@ -708,7 +715,7 @@ public class ColorPickerView extends View {
     int height = DrawingUtils.dpToPx(getContext(), 200);
 
     if (showAlphaPanel) {
-      height += panelSpacingPx + alphaPanelHeightPx;
+      height += alphaPanelSpacingPx + alphaPanelHeightPx;
     }
     return height;
   }
@@ -762,7 +769,7 @@ public class ColorPickerView extends View {
     int right = dRect.right - BORDER_WIDTH_PX - panelSpacingPx - huePanelWidthPx;
 
     if (showAlphaPanel) {
-      bottom -= (alphaPanelHeightPx + panelSpacingPx);
+      bottom -= (alphaPanelHeightPx + alphaPanelSpacingPx);
     }
 
     satValRect = new Rect(left, top, right, bottom);
@@ -774,7 +781,7 @@ public class ColorPickerView extends View {
 
     int left = dRect.right - huePanelWidthPx + BORDER_WIDTH_PX;
     int top = dRect.top + BORDER_WIDTH_PX;
-    int bottom = dRect.bottom - BORDER_WIDTH_PX - (showAlphaPanel ? (panelSpacingPx + alphaPanelHeightPx) : 0);
+    int bottom = dRect.bottom - BORDER_WIDTH_PX - (showAlphaPanel ? (alphaPanelSpacingPx + alphaPanelHeightPx) : 0);
     int right = dRect.right - BORDER_WIDTH_PX;
 
     hueRect = new Rect(left, top, right, bottom);

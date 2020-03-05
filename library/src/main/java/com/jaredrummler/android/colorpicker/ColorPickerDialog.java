@@ -279,6 +279,7 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
     newColorPanel = (ColorPanelView) contentView.findViewById(R.id.cpv_color_panel_new);
     ImageView arrowRight = (ImageView) contentView.findViewById(R.id.cpv_arrow_right);
     hexEditText = (EditText) contentView.findViewById(R.id.cpv_hex);
+    colorPicker.setAlphaSliderText(R.string.cpv_transparency);
 
     try {
       final TypedValue value = new TypedValue();
