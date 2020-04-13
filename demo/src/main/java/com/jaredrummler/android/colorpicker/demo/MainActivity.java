@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
         ColorPickerDialog.newBuilder()
             .setDialogType(ColorPickerDialog.TYPE_CUSTOM)
             .setAllowPresets(false)
+                .setTheme(R.style.Theme_AppCompat_DayNight_Dialog_Alert)
             .setDialogId(DIALOG_ID)
             .setColor(Color.BLACK)
             .setShowAlphaSlider(true)

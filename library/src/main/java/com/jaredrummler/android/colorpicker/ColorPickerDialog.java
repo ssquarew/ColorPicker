@@ -48,6 +48,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
+import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.graphics.ColorUtils;
 import androidx.fragment.app.DialogFragment;
@@ -795,6 +796,9 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
         int[] presets = MATERIAL_COLORS;
         @ColorInt
         int color = Color.BLACK;
+
+        @StyleRes
+        int theme = R.style.Theme_AppCompat_DayNight_Dialog;
         int dialogId = 0;
         boolean showAlphaSlider = false;
         boolean allowPresets = true;
@@ -881,6 +885,11 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
          */
         public Builder setColor(int color) {
             this.color = color;
+            return this;
+        }
+
+        public Builder setTheme(int theme) {
+            this.theme = theme;
             return this;
         }
 
@@ -973,7 +982,7 @@ public class ColorPickerDialog extends DialogFragment implements ColorPickerView
             args.putInt(ARG_PRESETS_BUTTON_TEXT, presetsButtonText);
             args.putInt(ARG_CUSTOM_BUTTON_TEXT, customButtonText);
             args.putInt(ARG_SELECTED_BUTTON_TEXT, selectedButtonText);
-            args.putInt(ARG_THEME_ID, R.style.Theme_AppCompat_DayNight_Dialog);
+            args.putInt(ARG_THEME_ID, theme);
             dialog.setArguments(args);
             return dialog;
         }
